@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>dev-burguê</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">🍔 hamburgue</a>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#cardapio">Cardapio</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
+        </nav>
+        <div class="header-actions">
+            <button id="cart-btn" class="btn cart-btn">
+                🛒 Carrinho (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>🛒 Seu Carrinho</h2>
+                <button id="close-cart" class="close-btn">&times;</button>
+            </div>
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total:</strong>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button id="checkout-btn" class="btn btn-checkout">Finalizar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>📋 Informações do Pedido</h2>
+                <button id="close-checkout" class="close-btn">&times;</button>
+            </div>
+            <form id="checkout-form" class="checkout-form">
+                <div class="form-group">
+                    <label for="customer-name">Nome Completo *</label>
+                    <input type="text" id="customer-name" required placeholder="Seu nome">
+                </div>
+
+                <div class="form-group">
+                    <label for="customer-phone">Telefone/WhatsApp *</label>
+                    <input type="tel" id="customer-phone" required placeholder="(00) 00000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Pedido *</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="order-type" value="delivery" checked>
+                            <span>🚚 Entrega</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="order-type" value="pickup">
+                            <span>🏪 Retirada</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="delivery-fields">
+                    <div class="form-group">
+                        <label for="customer-address">Endereço *</label>
+                        <input type="text" id="customer-address" placeholder="Rua, número">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customer-neighborhood">Bairro *</label>
+                            <input type="text" id="customer-neighborhood" placeholder="Bairro">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer-complement">Complemento</label>
+                            <input type="text" id="customer-complement" placeholder="Apto, bloco, etc">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment-method">Forma de Pagamento *</label>
+                    <select id="payment-method" required>
+                        <option value="">Selecione...</option>
+                        <option value="pix">PIX</option>
+                        <option value="credit">Cartão de Crédito</option>
+                        <option value="debit">Cartão de Débito</option>
+                        <option value="cash">Dinheiro</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="change-field" style="display: none;">
+                    <label for="change-for">Troco para quanto?</label>
+                    <input type="text" id="change-for" placeholder="R$ 0,00">
+                </div>
+
+                <div class="form-group">
+                    <label for="order-notes">Observações</label>
+                    <textarea id="order-notes" rows="3" placeholder="Alguma observação sobre o pedido?"></textarea>
+                </div>
+
+                <div class="checkout-summary">
+                    <h3>Resumo do Pedido</h3>
+                    <div id="checkout-items"></div>
+                    <div class="checkout-total">
+                        <strong>Total:</strong>
+                        <span id="checkout-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-checkout">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="home" class="hero-wrapper">
+        <article class="hero">
+            <div>
+                <h1>O Melhor Hamburguer Da Cidade</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate odit cum repellat corporis
+                    perspiciatis soluta quibusdam itaque provident fugit distinctio ipsam officiis qui, fuga, earum
+                    sequi voluptate blanditiis. Ullam, est.</p>
+                <nav class="hero-buttons">
+                    <a href="#cardapio" class="btn">ver cardapio</a>
+                    <a href="https://w.app/hf6lgm" class="btn btn-outline">📲 WhatsAPP</a>
+                </nav>
+                <ul class="hero-stats">
+                    <li>
+                        <strong>+500</strong>
+                        Clientes Felizes
+                    </li>
+
+                    <li>
+                        <strong>4.9</strong>
+                        Avaliação ⭐
+                    </li>
+
+                    <li>
+                        <strong>40 min</strong>
+                        tempo 🛵
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <img alt="hamburgue"
+                src="https://plus.unsplash.com/premium_photo-1668618295237-f1d8666812c9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+
+        </article>
+
+    </section>
+
+
+    <section id="cardapio" class="cardapio">
+        <h2>Nosso Cardápio</h2>
+        <p>Escolha Seu Favorito E Adicione ao Carrinho</p>
+
+        <ul class="menu-grid">
+            <li class="menu-item" data-id="1" data-name="Burger Clássico" data-price="29.90">
+                <img
+                    src="https://plus.unsplash.com/premium_photo-1675252369719-dd52bc69c3df?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <span class="badge">Mais vendido </span>
+                <h3>Burger Clássico</h3>
+                <p>Hambúrguer artesanal com carne bovina, queijo, alface, tomate e molho especial da casa</p>
+                <strong>R$ 29,90</strong>
+                <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+            </li>
+
+            <li class="menu-item" data-id="2" data-name="Burger Bacon" data-price="34.90">
+                <img
+                    src="https://plus.unsplash.com/premium_photo-1675252369719-dd52bc69c3df?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <span class="badge">Mais vendido </span>
+                <h3>Burger Bacon</h3>
+                <p>Hambúrguer com bacon crocante, queijo cheddar, cebola caramelizada e barbecue</p>
+                <strong>R$ 34,90</strong>
+                <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+            </li>
+
+            <li class="menu-item" data-id="3" data-name="Burger Duplo" data-price="39.90">
+                <img
+                    src="https://plus.unsplash.com/premium_photo-1675252369719-dd52bc69c3df?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <span class="badge">Mais vendido </span>
+                <h3>Burger Duplo</h3>
+                <p>Dois hambúrgueres suculentos, queijo duplo, picles e molho especial</p>
+                <strong>R$ 39,90</strong>
+                <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+            </li>
+
+            <li class="menu-item" data-id="4" data-name="Burger Picante" data-price="32.90">
+                <img
+                    src="https://plus.unsplash.com/premium_photo-1675252369719-dd52bc69c3df?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <span class="badge">Mais vendido </span>
+                <h3>Burger Picante</h3>
+                <p>Hambúrguer com pimenta jalapeño, queijo pepper jack e molho picante</p>
+                <strong>R$ 32,90</strong>
+                <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+            </li>
+
+            <li class="menu-item" data-id="5" data-name="Burger Vegano" data-price="29.90">
+                <img
+                    src="https://plus.unsplash.com/premium_photo-1675252369719-dd52bc69c3df?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <span class="badge">Mais vendido </span>
+                <h3>Burger Vegano</h3>
+                <p>Hambúrguer de grão de bico, queijo vegano, rúcula e molho tahine</p>
+                <strong>R$ 29,90</strong>
+                <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+            </li>
+
+            <li class="menu-item" data-id="6" data-name="Burger Premium" data-price="54.90">
+                <img
+                    src="https://plus.unsplash.com/premium_photo-1675252369719-dd52bc69c3df?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <span class="badge">Mais vendido </span>
+                <h3>Burger Premium</h3>
+                <p>Carne angus, queijo brie, rúcula, tomate seco e molho de mostarda dijon</p>
+                <strong>R$ 54,90</strong>
+                <button class="btn add-to-cart">Adicionar ao Carrinho</button>
+            </li>
+        </ul>
+
+    </section>
+
+
+    <section id="sobre" class="sobre">
+
+        <img src="https://plus.unsplash.com/premium_photo-1683619761464-6b7c9a2716a8?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="nossa-cozinha">
+        <article>
+            <h2>Nossa História</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem odio expedita beatae cum maiores
+                sint quisquam, animi maxime quia fuga porro possimus exercitationem eos sit eius quam earum debitis.</p>
+            <ul>
+                <li>🥩 <strong>Carne Fresca </strong> - 100% bovina selecionada</li>
+                <li>🚀 <strong>Entrega Rápida</strong> - Máximo 40 minutos</li>
+                <li>💳 <strong>Pagamento Fácil</strong> - PIX, Cartão ou dinheiro </li>
+
+            </ul>
+        </article>
+
+    </section>
+
+
+
+    <section id="cta" class="cta">
+
+        <h2>Bateu a Fome?</h2>
+        <p>Faça seu pedido agora e receba em casa!</p>
+        <a href="https://w.app/hf6lgm" class="btn btn-light">📲 pedir pelo WhatsAPP</a>
+
+    </section>
+
+
+    <footer id="Contato">
+        <section>
+            <h3>🍔 Burger House</h3>
+            <p>o melhor hambúrguer artesanal da cidade. </p>
+        </section>
+
+
+        <section>
+            <h4>Horario</h4>
+            <p>terça a domingo das 18h às 23h</p>
+        </section>
+
+        <section>
+            <h4>contato</h4>
+            <p>📲 (17) 997790727
+                📍 Rua dos Hambúgueres, 123
+            </p>
+        </section>
+
+        <section>
+            <h4>Redes Sociais</h4>
+            <p>Instagram</p>
+
+        </section>
+
+
+        <p class="copy">2025 - Hambúrgueria</p>
+
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+
+</html>
